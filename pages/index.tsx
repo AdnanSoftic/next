@@ -4,10 +4,25 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 
 import en from "../locales/en";
 import bs from "../locales/bs";
+
+export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
+  console.log("Locale: ", locales);
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+};
+
+// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+//   const { category } = query;
+//   return null;
+// };
 
 export default function Home({
   allPostsData,
@@ -57,13 +72,3 @@ export default function Home({
     </Layout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async ({ locale, locales }) => {
-  console.log("Locale: ", locales);
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-};
