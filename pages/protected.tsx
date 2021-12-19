@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Layout from "../components/layout";
 import AccessDenied from "../components/access-denied";
 
@@ -36,9 +36,21 @@ export default function Page() {
   return (
     <Layout>
       <h1>Protected Page</h1>
+      <h3>Email: {session.user.email}</h3>
+      <h3>Name: {session.user.name}</h3>
       <p>
         <strong>{content || "\u00a0"}</strong>
       </p>
+
+      <a
+        href="/api/auth/signout"
+        onClick={(e) => {
+          e.preventDefault();
+          signOut();
+        }}
+      >
+        Sign Out
+      </a>
     </Layout>
   );
 }

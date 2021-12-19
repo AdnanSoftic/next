@@ -6,6 +6,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mantine/core": "^3.4.2",
+    "@mantine/hooks": "^3.4.2",
+    "@mantine/next": "^3.4.2",
     "date-fns": "^2.27.0",
     "gray-matter": "^4.0.3",
     "next": "latest",

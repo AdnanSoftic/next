@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import IdentityServer4Provider from "next-auth/providers/identity-server4";
+import Auth0Provider from "next-auth/providers/auth0";
 
 export default NextAuth({
   providers: [
@@ -12,6 +13,13 @@ export default NextAuth({
       issuer: "https://demo.identityserver.io/",
       clientId: "interactive.confidential",
       clientSecret: "secret",
+    }),
+    Auth0Provider({
+      id: "Auth0",
+      name: "Auth0 Development",
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      issuer: process.env.AUTH0_ISSUER,
     }),
   ],
   debug: true,
