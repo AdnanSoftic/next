@@ -24,4 +24,10 @@ export default NextAuth({
   ],
   debug: true,
   secret: "6a41b0c7-b849-4a87-a6af-81ccbeb939a1",
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      console.log(`REDIRECT CALLBACK - Url: ${url}. Base Url: ${baseUrl}`);
+      return baseUrl;
+    },
+  },
 });
